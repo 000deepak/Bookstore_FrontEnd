@@ -11,9 +11,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-
     <Router>
       <Routes>
+        <Route path="/user" element={<User />} />
         <Route path="/" element={<Dashboard />}>
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/wishlist" element={<Wishlist />} />

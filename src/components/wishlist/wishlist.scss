@@ -1,0 +1,84 @@
+.cart-area {
+    width: 60vw;
+    height: 100vh;
+    padding: 0vh 0vw 0vh 10vw;
+  
+    .my-cart {
+      margin: 5vh 0vw 3vh 5vw;
+    }
+  }
+  .cart-items {
+    height: 40vh;
+    width: 70vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  
+    border-radius: 0.6rem;
+    border: 0.01rem solid #dadce0;
+  
+    .book-images {
+      padding-left: 5vw;
+    }
+    .details {
+      height: 15vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0vh 0vw 3vh 5vh;
+  
+      .rating {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        color: white;
+        .point {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          align-items: center;
+          background-color: green;
+          width: 2rem;
+          height: 1.5rem;
+          border-radius: 0.2rem;
+          border: 0.01rem solid;
+        }
+        .price {
+          font-weight: 700px;
+        }
+      }
+    }
+    .add-quantity {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  .customer-details {
+    height: 70vh;
+    width: 70vw;
+    margin: 5vh 0vw 0vh 0vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0.6rem;
+    border: 0.01rem solid #dadce0;
+  
+    .form-detail {
+      width: 35vw;
+    }
+    .customer-form {
+      padding: 2rem;
+      margin-right: 20vw;
+    }
+    .name {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .type {
+    display: flex;
+    justify-content: space-between;
+  }
+  
