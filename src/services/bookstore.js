@@ -16,7 +16,7 @@ const bookService = {
     return service.getMethod(`${url}/cart/cart`, header);
   },
   updateCart: (data) => {
-    return service.putMethod(`${url}/cart/update/${data}`, header);
+    return service.putMethod(`${url}/cart/update/${data.bookId}`,data.quantity,header);
   },
   addWishlist: (data) => {
     return service.postMethod(`${url}/wishlist/wishlist/${data}`,data, header);
@@ -25,7 +25,7 @@ const bookService = {
     return service.getMethod(`${url}/wishlist/wishlist`, header);
   },
   updateWishlist: (data) => {
-    return service.putMethod(`${url}/wishlist/update/${data}`, header);
+    return service.putMethod(`${url}/wishlist/update/${data}`,data, header);
   },
   addBook: (data) => {
     return service.postMethod(`${url}/book/book`, data, header);
