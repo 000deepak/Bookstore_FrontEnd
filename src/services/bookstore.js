@@ -1,6 +1,6 @@
 import service from "./axios";
 
-let url = "http://localhost:6000/api/v1";
+let url = "http://localhost:9000/api/v1";
 
 const header = {
   headers: {
@@ -10,27 +10,27 @@ const header = {
 
 const bookService = {
   addCart: (data) => {
-    return service.postMethod(`${url}/cart/cart/${data.bookId}`, data, header);
+    return service.postMethod(`${url}/cart/cart/${data}`, data, header);
   },
   getCart: () => {
     return service.getMethod(`${url}/cart/cart`, header);
   },
   updateCart: (data) => {
-    return service.putMethod(`${url}/cart/update/${data.bookId}`, header);
+    return service.putMethod(`${url}/cart/update/${data}`, header);
   },
   addWishlist: (data) => {
-    return service.postMethod(`${url}/wishlist/wishlist/${data.bookId}`, header);
+    return service.postMethod(`${url}/wishlist/wishlist/${data}`,data, header);
   },
   getWishlist: () => {
     return service.getMethod(`${url}/wishlist/wishlist`, header);
   },
   updateWishlist: (data) => {
-    return service.putMethod(`${url}/wishlist/update/${data.bookId}`, header);
+    return service.putMethod(`${url}/wishlist/update/${data}`, header);
   },
   addBook: (data) => {
     return service.postMethod(`${url}/book/book`, data, header);
   },
-  getBook: () => {
+  getBooks: () => {
     return service.getMethod(`${url}/book/book`, header);
   },
   signup: (data) => {

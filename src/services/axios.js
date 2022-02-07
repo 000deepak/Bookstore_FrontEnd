@@ -7,6 +7,7 @@ const AxiosService = {
   },
 
   getMethod: (url, headers = false) => {
+    console.log("in axios get");
     return axios.get(url, headers);
   },
 

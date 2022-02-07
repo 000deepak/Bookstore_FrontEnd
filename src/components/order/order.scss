@@ -1,0 +1,14 @@
+.order-area {
+    width: 100vw;
+    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order {
+    height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,33 +1,31 @@
-.books-area {
-  width: 100vw;
+.cart-area {
+  width: 60vw;
   height: 100vh;
-  // margin:0vh 20vw 0vh 0vw;
-  padding: 5vh 20vw 0vh 5vw;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  padding: 0vh 0vw 0vh 10vw;
+
+  .my-cart {
+    margin: 5vh 0vw 3vh 5vw;
+  }
 }
-.books {
-  height: 50vh;
-  width: 40vh;
+.cart-items {
+  height: 40vh;
+  width: 70vw;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: center;
-  margin: 10vh 0vw 10vh 0vw;
 
   border-radius: 0.6rem;
   border: 0.01rem solid #dadce0;
 
   .book-images {
-    padding-top: 5vh;
+    padding-left: 5vw;
   }
   .details {
-    height: 25vh;
+    height: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 0vh 0vw 3vh 5vh;
-    margin-left: -11vw;
 
     .rating {
       display: flex;
@@ -50,12 +48,36 @@
       }
     }
   }
-  .add-button {
-    width: 80%;
-    // padding: 0vh 0vw 0vh 4vh;
+  .add-quantity {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5vh;
   }
+}
+
+.customer-details {
+  height: 70vh;
+  width: 70vw;
+  margin: 5vh 0vw 0vh 0vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.6rem;
+  border: 0.01rem solid #dadce0;
+
+  .form-detail {
+    width: 35vw;
+  }
+  .customer-form {
+    padding: 2rem;
+    margin-right: 20vw;
+  }
+  .name {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.type {
+  display: flex;
+  justify-content: space-between;
 }
