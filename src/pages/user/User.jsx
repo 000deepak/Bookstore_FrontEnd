@@ -33,10 +33,10 @@ function User() {
 
           <div className="formContainer">
             <div className="switch">
-              <div className="sign" onClick={handleSwitch}>
+              <div className="sign" onClick={handleSwitch} style={{fontSize:"25px"}}>
                 Signin
               </div>
-              <div className="sign" onClick={handleSwitch}>
+              <div className="sign" onClick={handleSwitch} style={{fontSize:"25px"}}>
                 Signup
               </div>
             </div>

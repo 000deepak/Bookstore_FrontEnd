@@ -2,23 +2,22 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import service from "../../services/bookstore";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./signup.scss";
 
 function Signup() {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [field, setField] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
-    mobileNumber: "",
-    
-    fullNameError: false,
+
+    firstNameError: false,
+    lastNameError: false,
     emailError: false,
     passwordError: false,
-    mobileNumberError: false,
   });
 
   const changeField = (e) => {
@@ -29,91 +28,89 @@ function Signup() {
 
   const validation = () => {
     let isError = false;
-    let fullNameError = field.email === "" ? true : false;
+    let firstNameError = field.email === "" ? true : false;
+    let lastNameError = field.email === "" ? true : false;
     let emailError = field.email === "" ? true : false;
     let passwordError = field.password === "" ? true : false;
-    let mobileNumberError = field.email === "" ? true : false;
 
     setField((previousvalues) => {
       return {
         ...previousvalues,
-        fullNameError: fullNameError,
+        firstNameError: firstNameError,
+        lastNameError: lastNameError,
         emailError: emailError,
         passwordError: passwordError,
-        mobileNumberError: mobileNumberError,
       };
     });
     return (isError =
-      field.emailError || field.passwordError || field.fullNameError || field.mobileNumberError);
+      field.emailError || field.passwordError || field.firstNameError || field.lastNameError);
   };
 
   const next = () => {
     let validated = validation();
     if (!validated) {
       let data = {
-        "fullName": field.fullName,
-        "email": field.email,
-        "password": field.password,
-        "mobileNumber": field.mobileNumber,
+        firstName: field.firstName,
+        lastName: field.lastName,
+        email: field.email,
+        password: field.password,
       };
       service
         .signup(data)
         .then((res) => {
           console.log(res);
-    
-          //   navigate("/");
+
+          navigate("/");
         })
         .catch((res) => {});
     }
   };
 
+ 
+
   return (
     <div className="signup-form">
-          <div >
+      <div>
         <TextField
           id="outlined-basic"
-          name="fullName"
-          label="fullName"
+          name="firstName"
+          label="firstName"
           variant="outlined"
-          size="medium"
-          className="fullName"
+          size="small"
+          className="firstName"
           fullWidth
           autoFocus="true"
-          helperText={
-            field.fullNameError ? "fullName is required" : " "
-          }
-          error={field.fullNameError}
+          helperText={field.firstNameError ? "firstName is required" : " "}
+          error={field.firstNameError}
           onChange={(e) => {
             changeField(e);
           }}
         />
       </div>
-      <div >
+      <div>
         <TextField
           id="outlined-basic"
-          name="mobileNumber"
-          label="mobileNumber"
+          name="lastName"
+          label="lastName"
           variant="outlined"
-          size="medium"
-          className="mobileNumber"
+          size="small"
+          className="lastName"
           fullWidth
           autoFocus="true"
-          helperText={
-            field.mobileNumber? "Mobile Number is required" : " "
-          }
-          error={field.mobileNumber}
+          helperText={field.lastNameError ? "lastName is required" : " "}
+          error={field.lastNameError}
           onChange={(e) => {
             changeField(e);
           }}
         />
       </div>
-      <div >
+      <div>
         <TextField
           id="outlined-basic"
           name="email"
           label="Email"
           variant="outlined"
-          size="medium"
+          size="small"
           className="email"
           fullWidth
           autoFocus="true"
@@ -132,7 +129,7 @@ function Signup() {
           name="password"
           label="password"
           variant="outlined"
-          size="medium"
+          size="small"
           className="email"
           fullWidth
           type="password"
@@ -143,7 +140,15 @@ function Signup() {
           }}
         />
       </div>
-  
+      <div className="signup-button" onClick={next}>
+        <Button
+          variant="contained"
+          size="small"
+          style={{ backgroundColor: "#C03A2B", width: "100%" }}
+        >
+          Register
+        </Button>
+      </div>
     </div>
   );
 }

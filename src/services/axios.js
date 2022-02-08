@@ -12,7 +12,7 @@ const AxiosService = {
   },
 
   putMethod: (url, data, headers = false) => {
-    console.log(headers, data, "putt axios");
+    console.log(url,"/n",headers, data, "putt axios");
     return axios.put(url, data, headers);
   },
 };

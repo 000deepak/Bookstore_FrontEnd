@@ -1,15 +1,19 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import service from "../../services/bookstore";
 import bookImage from "../../assets/Image 11.png";
-import TextField from "@mui/material/TextField";
 import "./wishlist.scss";
 
 export default function Wishlist(props) {
   console.log(props, "in wishlist fn,props");
+  console.log(props.bookArr, "bookArr.book");
   console.log(props.bookArr.book, "bookArr.book");
+
+
+  React.useEffect(() => {
+    props.getBooks();
+  }, []);
 
 
   console.log(props.bookArr, "in wishlist fn,props.bookArr");
@@ -22,6 +26,7 @@ export default function Wishlist(props) {
       .updateWishlist(item.bookId)
       .then((res) => {
         console.log(res);
+        props.getBooks();
       })
       .catch((err) => {
         console.log(err);
@@ -30,9 +35,9 @@ export default function Wishlist(props) {
 
   return (
     <div className="cart-area">
-      <div className="my-cart"> My Wishlist({props.bookArr.book.length})</div>
+      <div className="my-cart"> My Wishlist({props.bookArr.length})</div>
       {/* cart items */}
-      {props.bookArr.book.map((item) => (
+      {props.bookArr.map((item) => (
         <div>
           <div className="cart-items">
             <div className="book-images">
@@ -44,7 +49,7 @@ export default function Wishlist(props) {
                 className="author"
                 style={{ fontSize: "12px", color: "#878787", font: "Roboto" }}
               >
-                by ME
+                {item.author}
               </div>
               <div className="rating">
                 <div className="point">4.5*</div>
@@ -52,7 +57,7 @@ export default function Wishlist(props) {
                   (20)
                 </div>
               </div>
-              <div className="price">Price</div>
+              <div className="price">{item.price}</div>
               <div className="add-quantity">
                 <Button
                   onClick={() => handleRemove(item)}

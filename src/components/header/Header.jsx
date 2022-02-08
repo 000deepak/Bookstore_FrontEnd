@@ -5,11 +5,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import cartIcon from "../../assets/supermarket.png";
 import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import service from "../../services/bookstore";
 import { useNavigate } from "react-router-dom";
 import "./header.scss";
 
 function Header(props) {
+  let user = localStorage.getItem("firstname");
 
   const handleCart = () => {
     console.log("going to cart from header");
@@ -21,10 +23,17 @@ function Header(props) {
     props.handleHeader("wishlist");
   };
 
+  const handleHome = () => {
+    console.log("going to Home");
+    props.handleHeader("home");
+  };
+
   return (
     <div className="header">
-      <div className="book-icon">
-        <img src={bookIcon}></img>
+      <div className="book-icon" onClick={handleHome}>
+        <IconButton>
+          <img src={bookIcon}></img>{" "}
+        </IconButton>
         <p style={{ color: "white" }}>Bookstore</p>
       </div>
 
@@ -34,27 +43,27 @@ function Header(props) {
         </IconButton>
         <input className="search" type="text" placeholder="Search"></input>
       </div>
-      <div>
+      <div style={{ color: "white" }}>
         <IconButton>
-          <PermIdentityTwoToneIcon></PermIdentityTwoToneIcon>
+          <PermIdentityTwoToneIcon style={{ color: "white" }}></PermIdentityTwoToneIcon>
         </IconButton>
-        Manage Account
+        {user}
       </div>
 
-      <div>
+      <div style={{ color: "white" }}>
         <IconButton onClick={handleWishlist}>
-          <FavoriteBorderSharpIcon></FavoriteBorderSharpIcon>
+          <FavoriteBorderSharpIcon style={{ color: "white" }}></FavoriteBorderSharpIcon>
         </IconButton>
         Wishlist
       </div>
 
       <div className="cart-icon">
+        <IconButton onClick={handleCart}>
+          <ShoppingCartOutlinedIcon style={{ color: "white" }} />
+        </IconButton>
         <p className="cart-name" style={{ color: "white" }}>
           Cart
         </p>
-        <IconButton onClick={handleCart}>
-          <img src={cartIcon}></img>
-        </IconButton>
       </div>
     </div>
   );

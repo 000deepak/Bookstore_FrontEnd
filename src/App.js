@@ -6,11 +6,13 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Books from "../src/components/Books/Books";
 import Cart from "../src/components/cart/Cart";
 import Wishlist from "../src/components/wishlist/Wishlist";
-
+import CustomerDetails from "./components/customerDetails/CustomerDetails";
+import Order from "./components/order/Order";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
+    // <Order />
     <Router>
       <Routes>
         <Route path="/user" element={<User />} />

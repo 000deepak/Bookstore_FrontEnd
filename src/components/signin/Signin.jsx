@@ -44,8 +44,8 @@ function Signin() {
         .signin(data)
         .then((res) => {
           console.log(res);
-          localStorage.setItem("firstname", res.data.data.firstname);
-          localStorage.setItem("lastname", res.data.data.lastname);
+          localStorage.setItem("firstname", res.data.data.firstName);
+          localStorage.setItem("lastname", res.data.data.lastName);
           localStorage.setItem("email", res.data.data.email);
           localStorage.setItem("token", res.data.data.token);
           localStorage.setItem("userId", res.data.data.userId);
