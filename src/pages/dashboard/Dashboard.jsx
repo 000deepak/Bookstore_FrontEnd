@@ -12,42 +12,74 @@ import "./dashboard.scss";
 export default function Dashboard() {
   let navigate = useNavigate();
 
+  const [books, setBooks] = React.useState([]);
   const [cart, setCart] = React.useState([]);
   const [wishlist, setWishlist] = React.useState([]);
 
-
   React.useEffect(() => {
+    getBooks();
     getWishlistBooks();
+    getCartBooks();
   }, []);
 
-  const getWishlistBooks = () => {
+  const getBooks = () => {
     service
-      .getWishlist()
+      .getBooks()
       .then((res) => {
-        console.log(res,"wishlist get response 1");
-        console.log(res.data.data,"wishlist get response 2");
-        console.log(res.data.data.book,"wishlist get response 3 book");
-
-
-        setWishlist(res.data.data.book);
-        
+        console.log(res);
+        setBooks(res.data.data);
+        getCartBooks();
+        getWishlistBooks();
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  console.log(wishlist,"setwishlist");
+
+  const getWishlistBooks = () => {
+    service
+      .getWishlist()
+      .then((res) => {
+        setWishlist(res.data.data.book);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const getCartBooks = () => {
     service
       .getCart()
       .then((res) => {
-        console.log(res,"get cart response");
-        console.log(res.data.data,"get cart response");
-        console.log(res.data.data.book,"get cart response");
-
         setCart(res.data.data.book);
-        console.log(cart, "in setCart");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const addToCart = (bookId) => {
+    console.log(bookId);
+    service
+      .addCart(bookId)
+      .then((res) => {
+        console.log(res);
+        getCartBooks();
+        getWishlistBooks();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const addToWishlist = (item) => {
+    console.log(item._id);
+    service
+      .addWishlist(item._id)
+      .then((res) => {
+        console.log(res);
+        getCartBooks();
+        getWishlistBooks();
       })
       .catch((err) => {
         console.log(err);
@@ -58,15 +90,13 @@ export default function Dashboard() {
     if (icon == "cart") {
       console.log("getting cart from dashboard");
       getCartBooks();
-      console.log(cart," in cart");
+      console.log(cart, " in cart");
       navigate("/cart");
-
     } else if (icon == "wishlist") {
       console.log("This is wishlist icon");
       getWishlistBooks();
-      console.log(wishlist,"wishlist");
+      console.log(wishlist, "wishlist");
       navigate("/wishlist");
-
     } else if (icon == "home") {
       console.log("This is home icon");
 
@@ -79,16 +109,20 @@ export default function Dashboard() {
   return (
     <div className="book-dashboard">
       <div>
-        <Header handleHeader={handleHeader} />
+        <Header handleHeader={handleHeader} wishlist={wishlist} cart={cart} />
       </div>
       <Routes>
         <Route exact path="/cart" element={<Cart bookArr={cart} getBooks={getCartBooks} />} />
         <Route
           exact
           path="/wishlist"
-          element={<Wishlist bookArr={wishlist} getBooks={getWishlistBooks} />}
+          element={<Wishlist bookArr={wishlist} getBooks={getWishlistBooks} addToCart={addToCart}/>}
         />
-        <Route exact path="/" element={<Books />} />
+        <Route
+          exact
+          path="/"
+          element={<Books addToCart={addToCart} addToWishlist={addToWishlist} books={books} />}
+        />
       </Routes>
       <div>{/* <Footer /> */}</div>
     </div>

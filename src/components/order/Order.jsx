@@ -1,14 +1,22 @@
 import React from "react";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+
 import "./order.scss";
 
-function Header() {
+function Order() {
+  const navigate = useNavigate();
+
+  const handleHome = () => {
+    navigate("/");
+  };
+
   return (
     <div className="order-area">
       <div className="order">
         <div className="order-placed">Order Placed Successfully</div>
         <div style={{ height: "30vh" }}>
-          hurray!!! your order is confirmed order id is #654321 <br></br>save the order id for
+          Hurray!!! your order is confirmed order id is #654321 <br></br>save the order id for
           further communication.
         </div>
         <div>
@@ -25,10 +33,12 @@ function Header() {
             </tr>
           </table>
         </div>
-        <Button style={{ backgroundColor: "blue", color: "white" }}>Continue Shopping</Button>
+        <Button onClick={handleHome} style={{ backgroundColor: "blue", color: "white" }}>
+          Continue Shopping
+        </Button>
       </div>
     </div>
   );
 }
 
-export default Header;
+export default Order;

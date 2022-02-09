@@ -39,6 +39,9 @@ const bookService = {
   signin: (data) => {
     return service.postMethod(`${url}/user/signin`, data);
   },
+  addCustomer: (data) => {
+    return service.postMethod(`${url}/customer/customer`, data, header);
+  },
 };
 
 export default bookService;

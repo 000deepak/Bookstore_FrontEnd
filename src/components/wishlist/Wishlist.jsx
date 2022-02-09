@@ -1,23 +1,24 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+
 import service from "../../services/bookstore";
 import bookImage from "../../assets/Image 11.png";
 import "./wishlist.scss";
 
 export default function Wishlist(props) {
-  console.log(props, "in wishlist fn,props");
-  console.log(props.bookArr, "bookArr.book");
-  console.log(props.bookArr.book, "bookArr.book");
-
-
   React.useEffect(() => {
     props.getBooks();
   }, []);
 
+  const handleCart = (item) => {
+    console.log(item.bookId);
+    props.addToCart(item.bookId);
+  }
 
-  console.log(props.bookArr, "in wishlist fn,props.bookArr");
- 
+
   const handleRemove = (item) => {
     console.log(item, "item");
 
@@ -34,12 +35,12 @@ export default function Wishlist(props) {
   };
 
   return (
-    <div className="cart-area">
-      <div className="my-cart"> My Wishlist({props.bookArr.length})</div>
-      {/* cart items */}
+    <div className="wishlist-area">
+      <div className="my-wishlist"> My Wishlist({props.bookArr.length})</div>
+      {/* wishlist items */}
       {props.bookArr.map((item) => (
-        <div>
-          <div className="cart-items">
+        <div className="main-flex">
+          <div className="wishlist-items">
             <div className="book-images">
               <img src={bookImage}></img>
             </div>
@@ -58,15 +59,16 @@ export default function Wishlist(props) {
                 </div>
               </div>
               <div className="price">{item.price}</div>
-              <div className="add-quantity">
-                <Button
-                  onClick={() => handleRemove(item)}
-                  style={{ backgroundColor: "#A03037", color: "white", fontSize: "12px" }}
-                >
-                  -
-                </Button>
-              </div>
+              <div className="add-book"></div>
             </div>
+          </div>
+          <div className="remove-book">
+            <Button onClick={() => handleRemove(item)} style={{ color: "#a03037" }}>
+              <DeleteOutlineOutlinedIcon />
+            </Button>
+            <Button onClick={() => handleCart(item)} style={{ color: "#a03037" }}>
+              <AddShoppingCartIcon />
+            </Button>
           </div>
         </div>
       ))}

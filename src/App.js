@@ -16,6 +16,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/user" element={<User />} />
+        <Route exact path="/order" element={<Order />} />
+
         <Route path="/" element={<Dashboard />}>
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/wishlist" element={<Wishlist />} />

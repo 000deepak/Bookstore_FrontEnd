@@ -1,7 +1,7 @@
-.sort{
-
+.book-main {
+  max-width: 100%;
 }
-.bookBar{
+.bookBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,14 +10,10 @@
 }
 
 .books-area {
-  width: 95vw;
   height: 100vh;
-  // margin:0vh 20vw 0vh 0vw;
-  padding: 5vh 20vw 0vh 5vw;
+  padding: 5vh 0vw 0vh 5vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
- 
 }
 .books {
   height: 45vh;

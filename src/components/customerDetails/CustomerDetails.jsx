@@ -84,17 +84,18 @@ export default function CustomerDetails(props) {
         landmark: field.landmark,
       };
 
-      //   service
-      //     .signup(data)
-      //     .then((res) => {
-      //       console.log(res);
-
-      //       navigate("/");
-      //     })
-      //     .catch((res) => {});
-
       console.log(data);
+
+      service
+        .addCustomer(data)
+        .then((res) => {
+          console.log(res);
+          props.handleFill();
+        })
+        .catch((res) => {});
     }
+
+   
   };
 
   return (

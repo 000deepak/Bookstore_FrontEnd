@@ -6,11 +6,18 @@ import cartIcon from "../../assets/supermarket.png";
 import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import Badge from "@mui/material/Badge";
 import service from "../../services/bookstore";
 import { useNavigate } from "react-router-dom";
 import "./header.scss";
 
 function Header(props) {
+
+  React.useEffect(() => {
+    
+  }, []);
+
+
   let user = localStorage.getItem("firstname");
 
   const handleCart = () => {
@@ -52,14 +59,18 @@ function Header(props) {
 
       <div style={{ color: "white" }}>
         <IconButton onClick={handleWishlist}>
-          <FavoriteBorderSharpIcon style={{ color: "white" }}></FavoriteBorderSharpIcon>
+          <Badge badgeContent={props.wishlist.length} color="primary">
+            <FavoriteBorderSharpIcon style={{ color: "white" }}></FavoriteBorderSharpIcon>
+          </Badge>
         </IconButton>
         Wishlist
       </div>
 
       <div className="cart-icon">
         <IconButton onClick={handleCart}>
-          <ShoppingCartOutlinedIcon style={{ color: "white" }} />
+          <Badge badgeContent={props.cart.length} color="primary">
+            <ShoppingCartOutlinedIcon style={{ color: "white" }} />
+          </Badge>
         </IconButton>
         <p className="cart-name" style={{ color: "white" }}>
           Cart

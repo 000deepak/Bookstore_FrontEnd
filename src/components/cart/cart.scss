@@ -1,21 +1,35 @@
 .cart-area {
-  width: 60vw;
-  height: 100vh;
-  padding: 0vh 0vw 0vh 10vw;
+  width: 70vw;
+  // width: 70vw;
+  margin: 5vh 0vw 0vh 10vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  .cart-main{
+  width: 70vw;
+
+    border-radius: 0.6rem;
+    border: 0.01rem solid #dadce0;
+  }
 
   .my-cart {
     margin: 5vh 0vw 3vh 5vw;
   }
 }
 .cart-items {
-  height: 40vh;
+  height: 25vh;
   width: 70vw;
+
+  margin-bottom: 2.5vh;
+
   display: flex;
   justify-content: start;
   align-items: center;
 
-  border-radius: 0.6rem;
-  border: 0.01rem solid #dadce0;
+  // border-radius: 0.6rem;
+  // border: 0.01rem solid #dadce0;
 
   .book-images {
     padding-left: 5vw;
@@ -44,40 +58,28 @@
         border: 0.01rem solid;
       }
       .price {
-        font-weight: 700px;
+        font-weight: bold;
       }
     }
   }
   .add-quantity {
+    width: 5vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 }
 
-.customer-details {
-  height: 70vh;
-  width: 70vw;
-  margin: 5vh 0vw 0vh 0vw;
+.fill {
+  height: 8vh;
+  margin: 5vh 0vw 5vh 0vw;
+  padding-left: 2vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  border-radius: 0.6rem;
+  justify-content: space-around;
+  align-items: start;
+  border-radius: 0.2rem;
   border: 0.01rem solid #dadce0;
+}
 
-  .form-detail {
-    width: 35vw;
-  }
-  .customer-form {
-    padding: 2rem;
-    margin-right: 20vw;
-  }
-  .name {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-.type {
-  display: flex;
-  justify-content: space-between;
-}
+

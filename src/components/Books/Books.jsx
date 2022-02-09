@@ -1,64 +1,28 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import service from "../../services/bookstore";
 import bookImage from "../../assets/Image 11.png";
 import "./books.scss";
 
-function Books() {
-  const [books, setBooks] = React.useState([]);
-
-  const getBooks = () => {
-    service
-      .getBooks()
-      .then((res) => {
-        console.log(res);
-        setBooks(res.data.data);
-        console.log(books, "books array", res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  React.useEffect(() => {
-    getBooks();
-  }, []);
-
+function Books(props) {
   const handleCart = (item) => {
-    console.log(item._id);
-    service
-      .addCart(item._id)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    props.addToCart(item._id);
   };
 
   const handleWishlist = (item) => {
-    console.log(item._id);
-    service
-      .addWishlist(item._id)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    props.addToWishlist(item._id);
   };
 
   return (
-    <div className="sort">
+    <div className="book-main">
       <div className="bookBar">
-        <div style={{display:"flex",alignItems:"center"}}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <div className="total-books" style={{ fontSize: "20px" }}>
             Books
           </div>
           <div className="total-books" style={{ fontSize: "12px" }}>
-            ({books.length} items)
+            ({props.books.length} items)
           </div>
         </div>
         <div>
@@ -71,7 +35,7 @@ function Books() {
         </div>
       </div>
       <div className="books-area">
-        {books.map((item, index) => (
+        {props.books.map((item, index) => (
           <div className="books">
             {/*book image */}
             <div className="book-images">
