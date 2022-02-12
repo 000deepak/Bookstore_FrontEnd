@@ -29,16 +29,17 @@ function User() {
               alt="this is logo"
               style={{ width: "245px", height: "245px" }}
             ></img>
+            <h3 style={{paddingLeft:"6rem",paddingTop:"1rem"}}>Bookstore Shopping</h3>
           </div>
 
           <div className="formContainer">
             <div className="switch">
-              <div className="sign" onClick={handleSwitch} style={{fontSize:"25px"}}>
+              <h5 className="sign" onClick={handleSwitch} style={{fontSize:"25px"}}>
                 Signin
-              </div>
-              <div className="sign" onClick={handleSwitch} style={{fontSize:"25px"}}>
+              </h5>
+              <h5 className="sign" onClick={handleSwitch} style={{fontSize:"25px"}}>
                 Signup
-              </div>
+              </h5>
             </div>
             <div className="include-form">{login ? <Signin /> : <Signup />}</div>
           </div>

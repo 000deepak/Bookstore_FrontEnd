@@ -16,8 +16,7 @@ export default function Wishlist(props) {
   const handleCart = (item) => {
     console.log(item.bookId);
     props.addToCart(item.bookId);
-  }
-
+  };
 
   const handleRemove = (item) => {
     console.log(item, "item");
@@ -35,43 +34,45 @@ export default function Wishlist(props) {
   };
 
   return (
-    <div className="wishlist-area">
-      <div className="my-wishlist"> My Wishlist({props.bookArr.length})</div>
-      {/* wishlist items */}
-      {props.bookArr.map((item) => (
-        <div className="main-flex">
-          <div className="wishlist-items">
-            <div className="book-images">
-              <img src={bookImage}></img>
-            </div>
-            <div className="details">
-              <div className="book-name">{item.bookName}</div>
-              <div
-                className="author"
-                style={{ fontSize: "12px", color: "#878787", font: "Roboto" }}
-              >
-                {item.author}
+    <div className="main-wishlist">
+      <div className="wishlist-area">
+        <h3 className="my-wishlist"> My Wishlist({props.bookArr.length})</h3>
+        {/* wishlist items */}
+        {props.bookArr.map((item) => (
+          <div className="main-flex">
+            <div className="wishlist-items">
+              <div className="book-images">
+                <img src={bookImage}></img>
               </div>
-              <div className="rating">
-                <div className="point">4.5*</div>
-                <div className="point-no" style={{ color: "#a03037" }}>
-                  (20)
+              <div className="details">
+                <div className="book-name">Sherlock Holmes{item.id}</div>
+                <div
+                  className="author"
+                  style={{ fontSize: "12px", color: "#878787", font: "Roboto" }}
+                >
+                  Arthur Conan Doyle
                 </div>
+                <div className="rating">
+                  <div className="point">4.5*</div>
+                  <div className="point-no" style={{ color: "#a03037" }}>
+                    (20)
+                  </div>
+                </div>
+                <div className="price">Rs.1500</div>
+                <div className="add-book"></div>
               </div>
-              <div className="price">{item.price}</div>
-              <div className="add-book"></div>
+            </div>
+            <div className="add-remove">
+              <Button onClick={() => handleCart(item)} style={{ color: "#a03037" }}>
+                <AddShoppingCartIcon />
+              </Button>
+              <Button onClick={() => handleRemove(item)} style={{ color: "#a03037" }}>
+                <DeleteOutlineOutlinedIcon />
+              </Button>
             </div>
           </div>
-          <div className="remove-book">
-            <Button onClick={() => handleRemove(item)} style={{ color: "#a03037" }}>
-              <DeleteOutlineOutlinedIcon />
-            </Button>
-            <Button onClick={() => handleCart(item)} style={{ color: "#a03037" }}>
-              <AddShoppingCartIcon />
-            </Button>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

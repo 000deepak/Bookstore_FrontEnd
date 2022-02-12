@@ -8,7 +8,7 @@ import "./footer.scss";
 function Footer() {
   return (
  
-      <div className="copyright">
+      <div className="copyright" >
         <p>Copyright@2022 Bookstore Private Limited.All Rights Reserved </p>
       </div>
    

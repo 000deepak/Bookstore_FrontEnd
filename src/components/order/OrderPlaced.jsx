@@ -2,9 +2,9 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
-import "./order.scss";
+import "./orderPlaced.scss";
 
-function Order() {
+function OrderPlaced() {
   const navigate = useNavigate();
 
   const handleHome = () => {
@@ -12,9 +12,9 @@ function Order() {
   };
 
   return (
-    <div className="order-area">
-      <div className="order">
-        <div className="order-placed">Order Placed Successfully</div>
+    <div className="orderPlaced-area">
+      <div className="orderPlaced">
+        <div className="orderPlaced-placed">Order Placed Successfully!!</div>
         <div style={{ height: "30vh" }}>
           Hurray!!! your order is confirmed order id is #654321 <br></br>save the order id for
           further communication.
@@ -41,4 +41,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default OrderPlaced;

@@ -72,10 +72,10 @@ export default function Dashboard() {
       });
   };
 
-  const addToWishlist = (item) => {
-    console.log(item._id);
+  const addToWishlist = (bookId) => {
+    console.log(bookId);
     service
-      .addWishlist(item._id)
+      .addWishlist(bookId)
       .then((res) => {
         console.log(res);
         getCartBooks();
@@ -107,7 +107,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="book-dashboard">
+    <div className="book-dashboard" style={{minHeight:"100vh"}}>
       <div>
         <Header handleHeader={handleHeader} wishlist={wishlist} cart={cart} />
       </div>
@@ -116,15 +116,27 @@ export default function Dashboard() {
         <Route
           exact
           path="/wishlist"
-          element={<Wishlist bookArr={wishlist} getBooks={getWishlistBooks} addToCart={addToCart}/>}
+          element={
+            <Wishlist bookArr={wishlist} getBooks={getWishlistBooks} addToCart={addToCart} />
+          }
         />
         <Route
           exact
           path="/"
-          element={<Books addToCart={addToCart} addToWishlist={addToWishlist} books={books} />}
+          element={
+            <Books
+              addToCart={addToCart}
+              addToWishlist={addToWishlist}
+              books={books}
+              cartBooks={cart}
+              wishlistBooks={wishlist}
+            />
+          }
         />
       </Routes>
-      <div>{/* <Footer /> */}</div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -12,11 +12,7 @@ import { useNavigate } from "react-router-dom";
 import "./header.scss";
 
 function Header(props) {
-
-  React.useEffect(() => {
-    
-  }, []);
-
+  React.useEffect(() => {}, []);
 
   let user = localStorage.getItem("firstname");
 
@@ -36,45 +32,57 @@ function Header(props) {
   };
 
   return (
-    <div className="header">
-      <div className="book-icon" onClick={handleHome}>
-        <IconButton>
-          <img src={bookIcon}></img>{" "}
-        </IconButton>
-        <p style={{ color: "white" }}>Bookstore</p>
-      </div>
+    <div className="main-header">
+      <div className="header">
+        <div className="book-icon" onClick={handleHome}>
+          <IconButton>
+            <img src={bookIcon}></img>{" "}
+          </IconButton>
+          <p style={{ color: "white" }}>Bookstore</p>
+        </div>
 
-      <div className="searchBar">
-        <IconButton className="mag">
-          <SearchIcon />
-        </IconButton>
-        <input className="search" type="text" placeholder="Search"></input>
-      </div>
-      <div style={{ color: "white" }}>
-        <IconButton>
-          <PermIdentityTwoToneIcon style={{ color: "white" }}></PermIdentityTwoToneIcon>
-        </IconButton>
-        {user}
-      </div>
+        <div>
+          <SearchIcon
+            style={{
+              display: "none",
+              marginLeft: "2.5rem",
+              paddingBottom: "2rem",
+              position: "absolute",
+            }}
+            className="magicon"
+          />
+        </div>
 
-      <div style={{ color: "white" }}>
-        <IconButton onClick={handleWishlist}>
-          <Badge badgeContent={props.wishlist.length} color="primary">
-            <FavoriteBorderSharpIcon style={{ color: "white" }}></FavoriteBorderSharpIcon>
-          </Badge>
-        </IconButton>
-        Wishlist
-      </div>
+        <div className="searchBar">
+          <input className="search" type="text" placeholder="Search"></input>
+        </div>
 
-      <div className="cart-icon">
-        <IconButton onClick={handleCart}>
-          <Badge badgeContent={props.cart.length} color="primary">
-            <ShoppingCartOutlinedIcon style={{ color: "white" }} />
-          </Badge>
-        </IconButton>
-        <p className="cart-name" style={{ color: "white" }}>
-          Cart
-        </p>
+        <div style={{ color: "white" }}>
+          <IconButton>
+            <PermIdentityTwoToneIcon style={{ color: "white" }}></PermIdentityTwoToneIcon>
+          </IconButton>
+          {user}
+        </div>
+
+        <div style={{ color: "white" }}>
+          <IconButton onClick={handleWishlist}>
+            <Badge badgeContent={props.wishlist.length} color="primary">
+              <FavoriteBorderSharpIcon style={{ color: "white" }}></FavoriteBorderSharpIcon>
+            </Badge>
+          </IconButton>
+          Wishlist
+        </div>
+
+        <div className="cart-icon">
+          <IconButton onClick={handleCart}>
+            <Badge badgeContent={props.cart.length} color="primary">
+              <ShoppingCartOutlinedIcon style={{ color: "white" }} />
+            </Badge>
+          </IconButton>
+          <p className="cart-name" style={{ color: "white" }}>
+            Cart
+          </p>
+        </div>
       </div>
     </div>
   );

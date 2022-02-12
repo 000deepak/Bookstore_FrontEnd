@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import "./signin.scss";
 
 function Signin() {
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
   const [field, setField] = useState({
     email: "",
     password: "",
@@ -49,7 +49,8 @@ function Signin() {
           localStorage.setItem("email", res.data.data.email);
           localStorage.setItem("token", res.data.data.token);
           localStorage.setItem("userId", res.data.data.userId);
-          //   navigate("/");
+            navigate("/");
+            
         })
         .catch((res) => {});
     }
@@ -93,7 +94,7 @@ function Signin() {
           }}
         />
       </div>
-      <div className="forgot">Forgot Password?</div>
+      <div className="forgot" style={{  paddingLeft: "2rem",paddingBottom: "1rem" }}>Forgot Password?</div>
       <div className="loginButton" onClick={next}>
         <Button
           variant="contained"
@@ -103,12 +104,12 @@ function Signin() {
           Login
         </Button>
       </div>
-      <div className="or">OR</div>
+      <div className="or" st>OR</div>
       <div className="elsebutton" /* onClick={next} */>
         <Button variant="contained" size="small">
           Facebook
         </Button>
-        <Button variant="contained" size="small" style={{ backgroundColor: "#E4E4E4" }}>
+        <Button variant="contained" size="small" style={{ backgroundColor: "#E4E4E4",color:"black" }}>
           Google
         </Button>
       </div>

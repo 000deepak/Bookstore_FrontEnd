@@ -7,7 +7,7 @@ import Books from "../src/components/Books/Books";
 import Cart from "../src/components/cart/Cart";
 import Wishlist from "../src/components/wishlist/Wishlist";
 import CustomerDetails from "./components/customerDetails/CustomerDetails";
-import Order from "./components/order/Order";
+import OrderPlaced from "../src/components/order/OrderPlaced"
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/user" element={<User />} />
-        <Route exact path="/order" element={<Order />} />
+        <Route exact path="/order" element={<OrderPlaced />} />
 
         <Route path="/" element={<Dashboard />}>
           <Route exact path="/cart" element={<Cart />} />

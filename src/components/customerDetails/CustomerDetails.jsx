@@ -1,6 +1,4 @@
 import React from "react";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import service from "../../services/bookstore";
 import TextField from "@mui/material/TextField";
@@ -72,6 +70,7 @@ export default function CustomerDetails(props) {
 
   const next = () => {
     let validated = validation();
+    props.handleFill();
     if (!validated) {
       let data = {
         fullName: field.fullName,
@@ -86,13 +85,14 @@ export default function CustomerDetails(props) {
 
       console.log(data);
 
-      service
-        .addCustomer(data)
-        .then((res) => {
-          console.log(res);
-          props.handleFill();
-        })
-        .catch((res) => {});
+      
+      // service
+      //   .addCustomer(data)
+      //   .then((res) => {
+      //     console.log(res);
+      //     props.handleFill();
+      //   })
+      //   .catch((res) => {});
     }
 
    
@@ -232,7 +232,7 @@ export default function CustomerDetails(props) {
               <input type="checkbox" />
               Other
             </div>
-            <Button onClick={next} style={{ backgroundColor: "blue", color: "white" }}>
+            <Button onClick={next} style={{ backgroundColor: "#3371B5", color: "white" }}>
               Continue
             </Button>
           </div>
