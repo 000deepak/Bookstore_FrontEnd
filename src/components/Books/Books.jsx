@@ -3,17 +3,21 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
+import { useSelector, useDispatch } from "react-redux";
 
 import service from "../../services/bookstore";
 import bookImage from "../../assets/Image 11.png";
 import "./books.scss";
 
 function Books(props) {
+  //------------------------------------------redux
 
-  //--------------
+  //getting state values
+  const booksArray = useSelector((state) => state.getTheBooks.books);
+  //replace props.books with this array to use redux
 
+  //-------------------------------------------redux(END)
 
-  //----------------------
   const [snackBar, setsnackBar] = React.useState(false);
 
   const handleCart = (item) => {

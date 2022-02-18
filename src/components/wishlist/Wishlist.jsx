@@ -3,12 +3,23 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useSelector, useDispatch } from "react-redux";
 
 import service from "../../services/bookstore";
 import bookImage from "../../assets/Image 11.png";
+
 import "./wishlist.scss";
 
 export default function Wishlist(props) {
+  //------------------------------------------redux
+
+  //getting state values
+  const wishlistArray = useSelector((state) => state.fetchWishlistBooks.books);
+  console.log(wishlistArray, "redux wishlist");
+  //replace props.books with this array to use redux
+
+  //-------------------------------------------redux(END)
+
   React.useEffect(() => {
     props.getBooks();
   }, []);
@@ -45,7 +56,9 @@ export default function Wishlist(props) {
                 <img src={bookImage}></img>
               </div>
               <div className="details">
-                <h4 style={{ height: ".1rem" }} className="book-name">Sherlock Holmes{item.id}</h4>
+                <h4 style={{ height: ".1rem" }} className="book-name">
+                  Sherlock Holmes{item.id}
+                </h4>
                 <div
                   className="author"
                   style={{ fontSize: "12px", color: "#878787", font: "Roboto" }}

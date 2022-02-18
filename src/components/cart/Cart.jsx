@@ -9,10 +9,20 @@ import CustomerDetails from "../customerDetails/CustomerDetails";
 import OrderSummary from "../orderSummary/OrderSummary";
 import { useNavigate } from "react-router-dom";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./cart.scss";
 
 export default function Cart(props) {
+  //------------------------------------------redux
+
+  //getting state values
+  const cartArray = useSelector((state) => state.fetchCartBooks.books);
+  console.log(cartArray, "redux cart");
+  //replace props.books with this array to use redux
+
+  //-------------------------------------------redux(END)
+
   const navigate = useNavigate();
   const [fill, setfill] = React.useState(false);
   const [summary, setSummary] = React.useState(false);
@@ -20,7 +30,7 @@ export default function Cart(props) {
   let sorted = props.bookArr.sort((a, b) => {
     let aValue = parseInt(a.bookId, 16);
     let bValue = parseInt(b.bookId, 16);
-    return aValue -  bValue;
+    return aValue - bValue;
   });
 
   console.log(sorted, props.bookArr, "sorted");
@@ -117,7 +127,9 @@ export default function Cart(props) {
                   <img src={bookImage}></img>
                 </div>
                 <div className="details">
-                  <h4 style={{ height: ".1rem" }} className="book-name">Sherlock Holmes</h4>
+                  <h4 style={{ height: ".1rem" }} className="book-name">
+                    Sherlock Holmes
+                  </h4>
                   <div
                     className="author"
                     style={{ fontSize: "12px", color: "#878787", font: "Roboto" }}
