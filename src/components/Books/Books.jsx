@@ -40,9 +40,6 @@ function Books(props) {
 
   const action = (
     <React.Fragment>
-      <Button color="secondary" size="small" onClick={handleClosesnackBar}>
-        UNDO
-      </Button>
       <IconButton size="small" aria-label="close" color="inherit" onClick={handleClosesnackBar}>
         <CloseIcon fontSize="small" />
       </IconButton>
