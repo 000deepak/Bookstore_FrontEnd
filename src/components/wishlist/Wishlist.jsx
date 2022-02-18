@@ -45,7 +45,7 @@ export default function Wishlist(props) {
                 <img src={bookImage}></img>
               </div>
               <div className="details">
-                <div className="book-name">Sherlock Holmes{item.id}</div>
+                <h4 style={{ height: ".1rem" }} className="book-name">Sherlock Holmes{item.id}</h4>
                 <div
                   className="author"
                   style={{ fontSize: "12px", color: "#878787", font: "Roboto" }}

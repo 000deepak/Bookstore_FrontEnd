@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import orderOne from "../../assets/order1.png";
+import orderTwo from "../../assets/order2.png";
 
 import "./orderPlaced.scss";
 
@@ -14,12 +16,17 @@ function OrderPlaced() {
   return (
     <div className="orderPlaced-area">
       <div className="orderPlaced">
-        <div className="orderPlaced-placed">Order Placed Successfully!!</div>
+        <div className="cracker">
+          <img src={orderOne} alt="this is logo"></img>
+          <div className="orderPlaced-placed">Order Placed Successfully!!</div>
+          <img src={orderTwo} alt="this is logo"></img>
+        </div>
+
         <div style={{ height: "30vh" }}>
           Hurray!!! your order is confirmed order id is #654321 <br></br>save the order id for
           further communication.
         </div>
-        <div>
+        <div style={{padding: "1rem" }}>
           <table>
             <tr>
               <th>Email Us</th>
@@ -33,7 +40,7 @@ function OrderPlaced() {
             </tr>
           </table>
         </div>
-        <Button onClick={handleHome} style={{ backgroundColor: "blue", color: "white" }}>
+        <Button onClick={handleHome} style={{ backgroundColor: "blue", color: "white",  }}>
           Continue Shopping
         </Button>
       </div>

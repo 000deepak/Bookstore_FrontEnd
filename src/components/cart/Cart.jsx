@@ -117,7 +117,7 @@ export default function Cart(props) {
                   <img src={bookImage}></img>
                 </div>
                 <div className="details">
-                  <div className="book-name">Sherlock Holmes</div>
+                  <h4 style={{ height: ".1rem" }} className="book-name">Sherlock Holmes</h4>
                   <div
                     className="author"
                     style={{ fontSize: "12px", color: "#878787", font: "Roboto" }}

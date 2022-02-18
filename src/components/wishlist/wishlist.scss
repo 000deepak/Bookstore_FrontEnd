@@ -1,18 +1,29 @@
-.main-wishlist {
+@mixin wishlist-flex-center {
   display: flex;
   justify-content: center;
   align-content: center;
 }
 
-.main-flex {
-  width: 100%;
+@mixin border {
+  border-radius: 0.6rem;
+  border: 0.01rem solid #dadce0;
+}
+
+@mixin wishlist-flex-sb {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0vh 0vw 3vh 0vw;
+}
 
-  border-radius: 0.6rem;
-  border: 0.01rem solid #dadce0;
+.main-wishlist {
+  @include wishlist-flex-center();
+}
+
+.main-flex {
+  @include wishlist-flex-sb();
+  width: 100%;
+  margin: 0vh 0vw 3vh 0vw;
+  @include border();
 }
 .wishlist-area {
   width: 75vw;
@@ -52,10 +63,8 @@
       font-size: 12px;
       color: white;
       .point {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        align-items: center;
+        @include wishlist-flex-center();
+
         background-color: green;
         width: 2rem;
         height: 1.5rem;
@@ -71,7 +80,5 @@
 .add-remove {
   padding: 1rem;
   margin: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include wishlist-flex-sb();
 }
