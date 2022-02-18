@@ -1,4 +1,4 @@
-export const getBooks = (books) => {
+export const fetchBooks = (books) => {
   return {
     type: 'GET_BOOKS',
     payload: books

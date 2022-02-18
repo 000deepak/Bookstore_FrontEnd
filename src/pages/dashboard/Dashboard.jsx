@@ -8,8 +8,23 @@ import service from "../../services/bookstore";
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+//redux
+import {fetchBooks } from "../../store/actions/index";
+import { useSelector, useDispatch } from "react-redux";
+
+//css
 import "./dashboard.scss";
+
 export default function Dashboard() {
+  //-----------------------------------------------redux
+
+  const dispatch = useDispatch();
+  //getting state values
+  const booksArray = useSelector((state) => state.getTheBooks.books);
+  console.log(booksArray,"booksArray")
+
+  //-----------------------------------------------redux(END)
+
   let navigate = useNavigate();
 
   const [books, setBooks] = React.useState([]);
@@ -27,6 +42,7 @@ export default function Dashboard() {
       .getBooks()
       .then((res) => {
         console.log(res);
+        dispatch(fetchBooks(res.data.data));
         setBooks(res.data.data);
         getCartBooks();
         getWishlistBooks();
@@ -107,7 +123,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="book-dashboard" style={{minHeight:"100vh"}}>
+    <div className="book-dashboard" style={{ minHeight: "100vh" }}>
       <div>
         <Header handleHeader={handleHeader} wishlist={wishlist} cart={cart} />
       </div>
@@ -127,7 +143,7 @@ export default function Dashboard() {
             <Books
               addToCart={addToCart}
               addToWishlist={addToWishlist}
-              books={books}
+              books={ booksArray/* books */}
               cartBooks={cart}
               wishlistBooks={wishlist}
             />
