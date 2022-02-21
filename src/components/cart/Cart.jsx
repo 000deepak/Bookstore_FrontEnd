@@ -18,8 +18,6 @@ export default function Cart(props) {
 
   //getting state values
   const cartArray = useSelector((state) => state.fetchCartBooks.books);
-  console.log(cartArray, "redux cart");
-  //replace props.books with this array to use redux
 
   //-------------------------------------------redux(END)
 
@@ -32,8 +30,6 @@ export default function Cart(props) {
     let bValue = parseInt(b.bookId, 16);
     return aValue - bValue;
   });
-
-  console.log(sorted, props.bookArr, "sorted");
 
   React.useEffect(() => {
     props.getBooks();
@@ -60,7 +56,6 @@ export default function Cart(props) {
     service
       .updateCart(data)
       .then((res) => {
-        console.log(res);
         props.getBooks();
       })
       .catch((err) => {
@@ -81,7 +76,6 @@ export default function Cart(props) {
     service
       .updateCart(data)
       .then((res) => {
-        console.log(res);
         props.getBooks();
       })
       .catch((err) => {
@@ -90,7 +84,6 @@ export default function Cart(props) {
   };
 
   const handlePlus = (item) => {
-    console.log("adding quantity");
     let bookId = item.bookId;
 
     const increaseQuantity = item.quantity + 1;
@@ -103,7 +96,6 @@ export default function Cart(props) {
     service
       .updateCart(data)
       .then((res) => {
-        console.log(res);
         props.getBooks();
       })
       .catch((err) => {
@@ -208,7 +200,7 @@ export default function Cart(props) {
         {/*order summary*/}
         <div style={{ width: "100%" }}>
           {summary ? (
-            <OrderSummary className bookArr={props.bookArr} />
+            <OrderSummary className bookArr={props.bookArr} handleHeader={props.handleHeader} />
           ) : (
             <div className="fill">Order Summary</div>
           )}

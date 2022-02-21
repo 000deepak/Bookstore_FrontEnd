@@ -1,6 +1,7 @@
 import React from "react";
 import bookIcon from "../../assets/education.png";
 import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import cartIcon from "../../assets/supermarket.png";
 import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
@@ -9,26 +10,43 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Badge from "@mui/material/Badge";
 import service from "../../services/bookstore";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import "./header.scss";
+import Search from "@mui/icons-material/Search";
 
 function Header(props) {
+  const navigate = useNavigate();
+  //------------------------------------------redux
+  //getting state values
+  const cartArray = useSelector((state) => state.fetchCartBooks.books);
+
+  //getting state values
+  const wishlistArray = useSelector((state) => state.fetchWishlistBooks.books);
+  //-------------------------------------------redux(END)
   React.useEffect(() => {}, []);
 
-  let user = localStorage.getItem("firstname");
+  let user = localStorage.getItem("firstName");
 
   const handleCart = () => {
-    console.log("going to cart from header");
     props.handleHeader("cart");
   };
 
   const handleWishlist = () => {
-    console.log("going to wishlist");
     props.handleHeader("wishlist");
   };
 
   const handleHome = () => {
-    console.log("going to Home");
     props.handleHeader("home");
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/user");
+  };
+
+  const searchBook = (e) => {
+    console.log(e.target.value)
+    props.search(e.target.value);
   };
 
   return (
@@ -43,6 +61,7 @@ function Header(props) {
 
         <div>
           <SearchIcon
+            
             style={{
               display: "none",
               marginLeft: "2.5rem",
@@ -54,7 +73,7 @@ function Header(props) {
         </div>
 
         <div className="searchBar">
-          <input className="search" type="text" placeholder="Search"></input>
+          <input className="search" type="text" placeholder="Search" onChange={(e) => searchBook(e)}></input>
         </div>
 
         <div style={{ color: "white" }}>
@@ -82,6 +101,12 @@ function Header(props) {
           <p className="cart-name" style={{ color: "white" }}>
             Cart
           </p>
+        </div>
+
+        <div>
+          <Button onClick={handleLogout} style={{ color: "white" }}>
+            Logout
+          </Button>
         </div>
       </div>
     </div>

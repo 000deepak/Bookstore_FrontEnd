@@ -19,6 +19,21 @@ function Books(props) {
   //-------------------------------------------redux(END)
 
   const [snackBar, setsnackBar] = React.useState(false);
+  const [bookArr, setBookArr] = React.useState(props.books);
+
+  React.useEffect(() => {
+    props.getBooks();
+    console.log(props.books, "books");
+  }, []);
+
+  const search=()=>{
+    if(props.searchText==''){
+      let filtered = props.books.filter(i=>i.bookName.toLoweCase().includes(props.searchText))
+      setBookArr(filtered)
+    }else{
+      setBookArr(props.books)
+    }
+  }
 
   const handleCart = (item) => {
     props.addToCart(item._id);
@@ -28,6 +43,37 @@ function Books(props) {
   const handleWishlist = (item) => {
     props.addToWishlist(item._id);
     setsnackBar(true);
+  };
+
+  const handleSelector = (e) => {
+    let val = e.target.value;
+    console.log(val);
+    switch (val) {
+      case "lowPrice":
+        lowToHigh();
+        break;
+      case "highPrice":
+        highToLow();
+        break;
+      default:
+        console.log("invalid");
+    }
+  };
+
+  const lowToHigh = () => {
+    var ltoh = props.books.sort((a, b) => a.price - b.price);
+    console.log(ltoh)
+    setBookArr(ltoh);
+    props.getBooks();
+
+  };
+
+  const highToLow = () => {
+    var htol = props.books.sort((a, b) => a.price - b.price).reverse();
+    console.log(htol)
+    setBookArr(htol);
+    props.getBooks();
+
   };
 
   const handleClosesnackBar = (event, reason) => {
@@ -126,11 +172,11 @@ function Books(props) {
               Books
             </h3>
             <div className="total-books" style={{ fontSize: "12px" }}>
-              ({props.books.length} items)
+              ({bookArr.length} items)
             </div>
           </div>
           <div>
-            <select name="sort by relevance" className="priceValue">
+            <select name="sort by relevance" className="priceValue" onChange={handleSelector}>
               <option value="priceValue">Sort by relevance</option>
               <option value="lowPrice">Price:Low to high</option>
               <option value="highPrice">Price:High to low</option>
@@ -140,7 +186,7 @@ function Books(props) {
         </div>
       </div>
       <div className="books-area">
-        {props.books.map((item) => (
+        {bookArr.map((item) => (
           <div className="books">
             {/*book image */}
             <div className="book-images">

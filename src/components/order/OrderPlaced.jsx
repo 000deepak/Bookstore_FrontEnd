@@ -7,6 +7,7 @@ import orderTwo from "../../assets/order2.png";
 import "./orderPlaced.scss";
 
 function OrderPlaced() {
+  
   const navigate = useNavigate();
 
   const handleHome = () => {

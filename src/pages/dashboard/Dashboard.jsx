@@ -7,6 +7,9 @@ import Wishlist from "../../components/wishlist/Wishlist";
 import service from "../../services/bookstore";
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import OrderPlaced from "../../components/order/OrderPlaced";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 //redux
 import { fetchBooks } from "../../store/actions/index";
@@ -26,15 +29,46 @@ export default function Dashboard() {
 
   let navigate = useNavigate();
 
+
   const [books, setBooks] = React.useState([]);
   const [cart, setCart] = React.useState([]);
   const [wishlist, setWishlist] = React.useState([]);
+  const [sliced, setSliced] = React.useState([]);
 
   React.useEffect(() => {
     getBooks();
     getWishlistBooks();
     getCartBooks();
+    // handlePage(1);
   }, []);
+
+  //-----------------------------------------------Pagination
+  const [page, setPage] = React.useState(1);
+
+  const handlePage = (e, page) => {
+    if (page == 1) {
+      
+      let arr = books.slice(0, 8).map((b) => b);
+      setSliced(arr);
+      setPage(page);
+      getBooks();
+    } else if (page == 2) {
+      getBooks();
+      let arr = books.slice(8, 16).map((b) => b);
+      setSliced(arr);
+      setPage(page);
+      console.log(arr, "page 2");
+    } else if (page == 3) {
+      let arr = books.slice(16, 24).map((b) => b);
+      setBooks(arr);
+    } else {
+      getBooks();
+      let arr = books.slice(0, 8).map((b) => b);
+      setSliced(arr);
+      setPage(page);
+    }
+  };
+  //-----------------------------------------------Pagination
 
   const getBooks = () => {
     service
@@ -114,6 +148,9 @@ export default function Dashboard() {
       getWishlistBooks();
       console.log(wishlist, "wishlist");
       navigate("/wishlist");
+    } else if (icon == "orderPlaced") {
+      console.log("This is order icon");
+      navigate("/orderPlaced");
     } else if (icon == "home") {
       console.log("This is home icon");
 
@@ -123,34 +160,60 @@ export default function Dashboard() {
     }
   };
 
+  const [searchText ,setSearchText]=React.useState('');
+  const search=(value)=>{
+    setSearchText(value)
+  }
+  
+
   return (
     <div className="book-dashboard" style={{ minHeight: "100vh" }}>
       <div>
-        <Header handleHeader={handleHeader} wishlist={wishlist} cart={cart} />
+        <Header handleHeader={handleHeader} wishlist={wishlist} cart={cart} search={search}/>
       </div>
-      <Routes>
-        <Route exact path="/cart" element={<Cart bookArr={cart} getBooks={getCartBooks} />} />
-        <Route
-          exact
-          path="/wishlist"
-          element={
-            <Wishlist bookArr={wishlist} getBooks={getWishlistBooks} addToCart={addToCart} />
-          }
-        />
-        <Route
-          exact
-          path="/"
-          element={
-            <Books
-              addToCart={addToCart}
-              addToWishlist={addToWishlist}
-              books={books}
-              cartBooks={cart}
-              wishlistBooks={wishlist}
+      <div className="page">
+        <Routes>
+          <Route
+            exact
+            path="/cart"
+            element={<Cart bookArr={cart} getBooks={getCartBooks} handleHeader={handleHeader} search={searchText}/>}
+          />
+          <Route
+            exact
+            path="/wishlist"
+            element={
+              <Wishlist bookArr={wishlist} getBooks={getWishlistBooks} addToCart={addToCart} />
+            }
+          />
+          <Route
+            exact
+            path="/"
+            element={
+              <Books
+                addToCart={addToCart}
+                addToWishlist={addToWishlist}
+                getBooks={getBooks}
+                books={sliced}
+                cartBooks={cart}
+                wishlistBooks={wishlist}
+              />
+            }
+          />
+          <Route exact path="/orderPlaced" element={<OrderPlaced />} />
+        </Routes>
+        <div className="pagination">
+          <Stack spacing={1}>
+            <Pagination
+              count={10}
+              variant="outlined"
+              shape="rounded"
+              onChange={handlePage}
+              page={page}
             />
-          }
-        />
-      </Routes>
+          </Stack>
+        </div>
+      </div>
+
       <div>
         <Footer />
       </div>

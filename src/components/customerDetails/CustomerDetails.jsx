@@ -70,7 +70,7 @@ export default function CustomerDetails(props) {
 
   const next = () => {
     let validated = validation();
-    props.handleFill();
+
     if (!validated) {
       let data = {
         fullName: field.fullName,
@@ -85,17 +85,14 @@ export default function CustomerDetails(props) {
 
       console.log(data);
 
-      
-      // service
-      //   .addCustomer(data)
-      //   .then((res) => {
-      //     console.log(res);
-      //     props.handleFill();
-      //   })
-      //   .catch((res) => {});
+      service
+        .addCustomer(data)
+        .then((res) => {
+          console.log(res);
+          props.handleFill();
+        })
+        .catch((res) => {});
     }
-
-   
   };
 
   return (

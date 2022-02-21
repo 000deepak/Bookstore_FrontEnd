@@ -15,8 +15,6 @@ export default function Wishlist(props) {
 
   //getting state values
   const wishlistArray = useSelector((state) => state.fetchWishlistBooks.books);
-  console.log(wishlistArray, "redux wishlist");
-  //replace props.books with this array to use redux
 
   //-------------------------------------------redux(END)
 
@@ -25,18 +23,13 @@ export default function Wishlist(props) {
   }, []);
 
   const handleCart = (item) => {
-    console.log(item.bookId);
     props.addToCart(item.bookId);
   };
 
   const handleRemove = (item) => {
-    console.log(item, "item");
-
-    console.log(item.bookId, "removing from wishllist");
     service
       .updateWishlist(item.bookId)
       .then((res) => {
-        console.log(res);
         props.getBooks();
       })
       .catch((err) => {

@@ -14,7 +14,8 @@ export default function Summary(props) {
   }, []);
 
   const handleCheckout = () => {
-    navigate("/order");
+    // navigate("/order");
+    props.handleHeader("orderPlaced");
   };
 
   return (
