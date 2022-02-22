@@ -8,6 +8,7 @@ import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Badge from "@mui/material/Badge";
+import LogoutIcon from "@mui/icons-material/Logout";
 import service from "../../services/bookstore";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -45,7 +46,7 @@ function Header(props) {
   };
 
   const searchBook = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value,"header");
     props.search(e.target.value);
   };
 
@@ -60,20 +61,16 @@ function Header(props) {
         </div>
 
         <div>
-          <SearchIcon
-            
-            style={{
-              display: "none",
-              marginLeft: "2.5rem",
-              paddingBottom: "2rem",
-              position: "absolute",
-            }}
-            className="magicon"
-          />
+          <SearchIcon className="magicon" />
         </div>
 
         <div className="searchBar">
-          <input className="search" type="text" placeholder="Search" onChange={(e) => searchBook(e)}></input>
+          <input
+            className="search"
+            type="text"
+            placeholder="Search"
+            onChange={(e) => searchBook(e)}
+          ></input>
         </div>
 
         <div style={{ color: "white" }}>
@@ -103,10 +100,14 @@ function Header(props) {
           </p>
         </div>
 
-        <div>
-          <Button onClick={handleLogout} style={{ color: "white" }}>
-            Logout
-          </Button>
+        <div className="logout">
+          <LogoutIcon
+            onClick={handleLogout}
+            style={{ color: "white" }}
+            className="logout"
+          ></LogoutIcon>
+
+          <p style={{ color: "white" }}>Logout</p>
         </div>
       </div>
     </div>

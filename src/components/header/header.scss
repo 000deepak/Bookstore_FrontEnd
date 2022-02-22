@@ -35,9 +35,11 @@
 
       .magicon {
         display: none;
-        // position: absolute;
-        // margin-left: 20vw;
-        // padding-left: 15rem;
+
+        display: none;
+        margin-left: 2.5rem;
+        padding-bottom: 2rem;
+        position: absolute;
       }
     }
   }
@@ -46,4 +48,10 @@
     display: flex;
     align-items: center;
   }
+}
+
+.logout{
+ 
+  display: flex;
+    align-items: center;
 }

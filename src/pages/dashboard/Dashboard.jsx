@@ -8,8 +8,10 @@ import service from "../../services/bookstore";
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import OrderPlaced from "../../components/order/OrderPlaced";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
+import { Pagination } from "@material-ui/lab";
+import usePagination from "../../components/pagination/Paginate";
+
+
 
 //redux
 import { fetchBooks } from "../../store/actions/index";
@@ -29,7 +31,6 @@ export default function Dashboard() {
 
   let navigate = useNavigate();
 
-
   const [books, setBooks] = React.useState([]);
   const [cart, setCart] = React.useState([]);
   const [wishlist, setWishlist] = React.useState([]);
@@ -43,30 +44,16 @@ export default function Dashboard() {
   }, []);
 
   //-----------------------------------------------Pagination
-  const [page, setPage] = React.useState(1);
+  let [page, setPage] = React.useState(1);
+  const PER_PAGE = 8;
 
-  const handlePage = (e, page) => {
-    if (page == 1) {
-      
-      let arr = books.slice(0, 8).map((b) => b);
-      setSliced(arr);
-      setPage(page);
-      getBooks();
-    } else if (page == 2) {
-      getBooks();
-      let arr = books.slice(8, 16).map((b) => b);
-      setSliced(arr);
-      setPage(page);
-      console.log(arr, "page 2");
-    } else if (page == 3) {
-      let arr = books.slice(16, 24).map((b) => b);
-      setBooks(arr);
-    } else {
-      getBooks();
-      let arr = books.slice(0, 8).map((b) => b);
-      setSliced(arr);
-      setPage(page);
-    }
+  const count = Math.ceil(books.length / PER_PAGE);
+  const _DATA = usePagination(books, PER_PAGE);
+
+  const handleChange = (e, p) => {
+    console.log(_DATA.currentData(),p)
+    setPage(p);
+    _DATA.jump(p);
   };
   //-----------------------------------------------Pagination
 
@@ -160,23 +147,29 @@ export default function Dashboard() {
     }
   };
 
-  const [searchText ,setSearchText]=React.useState('');
-  const search=(value)=>{
-    setSearchText(value)
-  }
-  
+  const [searchText, setSearchText] = React.useState("");
+  const search = (value) => {
+    setSearchText(value);
+  };
 
   return (
-    <div className="book-dashboard" style={{ minHeight: "100vh" }}>
+    <div className="book-dashboard">
       <div>
-        <Header handleHeader={handleHeader} wishlist={wishlist} cart={cart} search={search}/>
+        <Header handleHeader={handleHeader} wishlist={wishlist} cart={cart} search={search} />
       </div>
       <div className="page">
         <Routes>
           <Route
             exact
             path="/cart"
-            element={<Cart bookArr={cart} getBooks={getCartBooks} handleHeader={handleHeader} search={searchText}/>}
+            element={
+              <Cart
+                bookArr={cart}
+                getBooks={getCartBooks}
+                handleHeader={handleHeader}
+                search={searchText}
+              />
+            }
           />
           <Route
             exact
@@ -193,24 +186,24 @@ export default function Dashboard() {
                 addToCart={addToCart}
                 addToWishlist={addToWishlist}
                 getBooks={getBooks}
-                books={sliced}
+                books={_DATA.currentData()}
                 cartBooks={cart}
                 wishlistBooks={wishlist}
+                searchText={searchText}
               />
             }
           />
           <Route exact path="/orderPlaced" element={<OrderPlaced />} />
         </Routes>
         <div className="pagination">
-          <Stack spacing={1}>
-            <Pagination
-              count={10}
-              variant="outlined"
-              shape="rounded"
-              onChange={handlePage}
-              page={page}
-            />
-          </Stack>
+          <Pagination
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
         </div>
       </div>
 

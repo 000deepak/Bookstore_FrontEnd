@@ -24,10 +24,12 @@ function Books(props) {
   React.useEffect(() => {
     props.getBooks();
     console.log(props.books, "books");
+    search();
+    lowToHigh();
   }, []);
 
   const search=()=>{
-    if(props.searchText==''){
+    if(props.searchText!=''){
       let filtered = props.books.filter(i=>i.bookName.toLoweCase().includes(props.searchText))
       setBookArr(filtered)
     }else{
@@ -172,7 +174,7 @@ function Books(props) {
               Books
             </h3>
             <div className="total-books" style={{ fontSize: "12px" }}>
-              ({bookArr.length} items)
+              ({props.books.length} items)
             </div>
           </div>
           <div>
