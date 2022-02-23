@@ -22,20 +22,21 @@ function Books(props) {
   const [bookArr, setBookArr] = React.useState(props.books);
 
   React.useEffect(() => {
-    props.getBooks();
     console.log(props.books, "books");
     search();
-    lowToHigh();
-  }, []);
+    console.log(props.page, "page");
+  }, [props.searchText]);
 
-  const search=()=>{
-    if(props.searchText!=''){
-      let filtered = props.books.filter(i=>i.bookName.toLoweCase().includes(props.searchText))
-      setBookArr(filtered)
-    }else{
-      setBookArr(props.books)
+  const search = () => {
+    console.log(props.searchText, "books searchext");
+    if (props.searchText != "") {
+      let filtered = props.books.filter((i) => i.bookName.toLowerCase().includes(props.searchText));
+      console.log(filtered, "fltered");
+      setBookArr(filtered);
+    } else {
+      props.getBooks();
     }
-  }
+  };
 
   const handleCart = (item) => {
     props.addToCart(item._id);
@@ -64,18 +65,16 @@ function Books(props) {
 
   const lowToHigh = () => {
     var ltoh = props.books.sort((a, b) => a.price - b.price);
-    console.log(ltoh)
+    console.log(ltoh);
     setBookArr(ltoh);
     props.getBooks();
-
   };
 
   const highToLow = () => {
     var htol = props.books.sort((a, b) => a.price - b.price).reverse();
-    console.log(htol)
+    console.log(htol);
     setBookArr(htol);
     props.getBooks();
-
   };
 
   const handleClosesnackBar = (event, reason) => {

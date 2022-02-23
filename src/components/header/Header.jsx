@@ -45,8 +45,12 @@ function Header(props) {
     navigate("/user");
   };
 
+  const [searchText, setSearchText] = React.useState("");
+
+
   const searchBook = (e) => {
     console.log(e.target.value,"header");
+    setSearchText(e.target.value)
     props.search(e.target.value);
   };
 
@@ -69,6 +73,7 @@ function Header(props) {
             className="search"
             type="text"
             placeholder="Search"
+            value={searchText}
             onChange={(e) => searchBook(e)}
           ></input>
         </div>

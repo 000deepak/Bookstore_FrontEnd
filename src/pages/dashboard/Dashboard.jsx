@@ -11,8 +11,6 @@ import OrderPlaced from "../../components/order/OrderPlaced";
 import { Pagination } from "@material-ui/lab";
 import usePagination from "../../components/pagination/Paginate";
 
-
-
 //redux
 import { fetchBooks } from "../../store/actions/index";
 import { fetchCartBooks } from "../../store/actions/index";
@@ -51,7 +49,7 @@ export default function Dashboard() {
   const _DATA = usePagination(books, PER_PAGE);
 
   const handleChange = (e, p) => {
-    console.log(_DATA.currentData(),p)
+    console.log(_DATA.currentData(), p);
     setPage(p);
     _DATA.jump(p);
   };
